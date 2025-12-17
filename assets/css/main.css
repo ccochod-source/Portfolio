@@ -3417,27 +3417,21 @@ input, select, textarea {
 		margin: 0 0 1em 0;
 		overflow: hidden;
 		position: relative;
-		width: 4em;
+		width: 8em;
+		height: 8em;
+		border-radius: 50%;
 	}
 
 		#intro .logo:before {
-			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100px' height='100px' viewBox='0 0 100 100' preserveAspectRatio='none' zoomAndPan='disable'%3E%3Cpolygon points='0,0 100,0 100,25 50,0 0,25' style='fill:%23f4f4f4' /%3E%3Cpolygon points='0,100 100,100 100,75 50,100 0,75' style='fill:%23f4f4f4' /%3E%3C/svg%3E");
-			background-position: top left;
-			background-repeat: no-repeat;
-			background-size: 100% 100%;
-			content: '';
-			display: block;
-			height: 100%;
-			left: 0;
-			position: absolute;
-			top: 0;
-			width: 100%;
+			display: none;
 		}
 
 		#intro .logo img {
 			display: block;
-			margin-left: -0.25em;
-			width: 4.5em;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 50%;
 		}
 
 	#intro header h2 {
@@ -3609,3 +3603,166 @@ input, select, textarea {
 			}
 
 		}
+
+/* Scroll Animations */
+
+	/* Base transition properties - must persist regardless of animation state */
+	article.post, 
+	.image.featured, 
+	#main h3, 
+	.mini-post h3, 
+	ul.posts h3,
+	#main h4, 
+	.mini-post h4,
+	ul.posts, 
+	.mini-post {
+		-moz-transition: opacity 0.6s ease-out, -moz-transform 0.6s ease-out;
+		-webkit-transition: opacity 0.6s ease-out, -webkit-transform 0.6s ease-out;
+		-ms-transition: opacity 0.6s ease-out, -ms-transform 0.6s ease-out;
+		transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+	}
+
+	/* Initial state - elements are hidden and slightly below (only for elements not in viewport) */
+	article.post:not(.scroll-animated), 
+	.image.featured:not(.scroll-animated), 
+	#main h3:not(.scroll-animated), 
+	.mini-post h3:not(.scroll-animated),
+	ul.posts h3:not(.scroll-animated),
+	#main h4:not(.scroll-animated),
+	.mini-post h4:not(.scroll-animated),
+	ul.posts:not(.scroll-animated), 
+	.mini-post:not(.scroll-animated) {
+		opacity: 0;
+		-moz-transform: translateY(30px);
+		-webkit-transform: translateY(30px);
+		-ms-transform: translateY(30px);
+		transform: translateY(30px);
+	}
+
+	/* Animated state - elements fade in and slide up */
+	article.post.scroll-animated, 
+	.image.featured.scroll-animated, 
+	#main h3.scroll-animated, 
+	.mini-post h3.scroll-animated,
+	ul.posts h3.scroll-animated,
+	#main h4.scroll-animated,
+	.mini-post h4.scroll-animated,
+	ul.posts.scroll-animated, 
+	.mini-post.scroll-animated {
+		opacity: 1;
+		-moz-transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	/* Staggered animation delays for different elements */
+	article.post:nth-of-type(1):not(.scroll-animated) { transition-delay: 0.1s; }
+	article.post:nth-of-type(2):not(.scroll-animated) { transition-delay: 0.2s; }
+	article.post:nth-of-type(3):not(.scroll-animated) { transition-delay: 0.3s; }
+	article.post:nth-of-type(4):not(.scroll-animated) { transition-delay: 0.4s; }
+
+	.image.featured:not(.scroll-animated) { transition-delay: 0.2s; }
+	#main h3:not(.scroll-animated),
+	.mini-post h3:not(.scroll-animated),
+	ul.posts h3:not(.scroll-animated) { transition-delay: 0.15s; }
+	#main h4:not(.scroll-animated),
+	.mini-post h4:not(.scroll-animated) { transition-delay: 0.1s; }
+	ul.posts:not(.scroll-animated) { transition-delay: 0.25s; }
+
+/* Premium Project Titles */
+
+	/* Style pour les titres de projets dans projets.html */
+	#main article.post h3 a {
+		color: #1a1a1a;
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 1.4em;
+		letter-spacing: -0.02em;
+		position: relative;
+		display: inline-block;
+		-moz-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		-webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		-ms-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		padding-bottom: 8px;
+		margin-bottom: 0;
+	}
+
+	#main article.post h3 a::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background: linear-gradient(90deg, #2ebaae 0%, #1e8a7e 100%);
+		-moz-transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		-webkit-transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		-ms-transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		box-shadow: 0 2px 4px rgba(46, 186, 174, 0.3);
+	}
+
+	#main article.post h3 a:hover {
+		color: #2ebaae;
+		-moz-transform: translateY(-2px);
+		-webkit-transform: translateY(-2px);
+		-ms-transform: translateY(-2px);
+		transform: translateY(-2px);
+	}
+
+	#main article.post h3 a:hover::after {
+		width: 100%;
+	}
+
+	/* Style pour les liens secondaires (Canva, Google Sheets) */
+	#main article.post p a[href*="canva"],
+	#main article.post p a[href*="google"],
+	#main article.post p a[href*="lookerstudio"] {
+		color: #4a5568;
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 0.95em;
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		-moz-transition: all 0.25s ease;
+		-webkit-transition: all 0.25s ease;
+		-ms-transition: all 0.25s ease;
+		transition: all 0.25s ease;
+		padding: 4px 0;
+	}
+
+	#main article.post p a[href*="canva"]::before,
+	#main article.post p a[href*="google"]::before,
+	#main article.post p a[href*="lookerstudio"]::before {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0;
+		height: 1.5px;
+		background: linear-gradient(90deg, #00C4CC 0%, #0099a3 100%);
+		-moz-transition: width 0.3s ease;
+		-webkit-transition: width 0.3s ease;
+		-ms-transition: width 0.3s ease;
+		transition: width 0.3s ease;
+	}
+
+	#main article.post p a[href*="canva"]:hover,
+	#main article.post p a[href*="google"]:hover,
+	#main article.post p a[href*="lookerstudio"]:hover {
+		color: #00C4CC;
+		-moz-transform: translateX(4px);
+		-webkit-transform: translateX(4px);
+		-ms-transform: translateX(4px);
+		transform: translateX(4px);
+	}
+
+	#main article.post p a[href*="canva"]:hover::before,
+	#main article.post p a[href*="google"]:hover::before,
+	#main article.post p a[href*="lookerstudio"]:hover::before {
+		width: 100%;
+	}
