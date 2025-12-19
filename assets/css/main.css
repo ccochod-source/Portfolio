@@ -2366,6 +2366,11 @@ input, select, textarea {
 			font-family: 'Font Awesome 5 Brands';
 		}
 
+		.icon.brands.fa-linkedin:before,
+		.icon.brands.fa-github:before {
+			font-size: 2.67em;
+		}
+
 		.icon.suffix:before {
 			float: right;
 		}
@@ -3216,20 +3221,28 @@ input, select, textarea {
 		-webkit-justify-content: space-between;
 		-ms-justify-content: space-between;
 		justify-content: space-between;
+		-moz-align-items: center;
+		-webkit-align-items: center;
+		-ms-align-items: center;
+		align-items: center;
 		background-color: #3d2817;
 		border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 		height: 3.5em;
 		left: 0;
-		line-height: 3.5em;
 		position: fixed;
 		top: 0;
 		width: 100%;
 		z-index: 10000;
+		overflow: hidden;
 	}
 
 		#header a {
 			color: inherit;
 			text-decoration: none;
+		}
+
+		#header .main ul li > a {
+			color: #ffffff !important;
 		}
 
 		#header ul {
@@ -3245,15 +3258,26 @@ input, select, textarea {
 
 		#header h1 {
 			height: inherit;
-			line-height: inherit;
+			line-height: 3.5em;
 			padding: 0 0 0 1.5em;
 			white-space: nowrap;
 			color: #ffffff;
+			-moz-flex-shrink: 1;
+			-webkit-flex-shrink: 1;
+			-ms-flex-shrink: 1;
+			flex-shrink: 1;
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 
 			#header h1 a {
 				font-size: 0.7em;
 				color: #ffffff;
+				display: block;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
 			}
 
 		#header .links {
@@ -3263,7 +3287,7 @@ input, select, textarea {
 			flex: 1;
 			border-left: solid 1px rgba(160, 160, 160, 0.3);
 			height: inherit;
-			line-height: inherit;
+			line-height: 3.5em;
 			margin-left: 1.5em;
 			overflow: hidden;
 			padding-left: 1.5em;
@@ -3293,19 +3317,27 @@ input, select, textarea {
 
 		#header .main {
 			height: inherit;
-			line-height: inherit;
+			line-height: 3.5em;
 			text-align: right;
+			-moz-flex-shrink: 0;
+			-webkit-flex-shrink: 0;
+			-ms-flex-shrink: 0;
+			flex-shrink: 0;
 		}
 
 			#header .main ul {
 				height: inherit;
-				line-height: inherit;
+				line-height: 3.5em;
+				display: -moz-flex;
+				display: -webkit-flex;
+				display: -ms-flex;
+				display: flex;
 			}
 
 				#header .main ul li {
 					border-left: solid 1px rgba(255, 255, 255, 0.1);
 					height: inherit;
-					line-height: inherit;
+					line-height: 3.5em;
 					white-space: nowrap;
 				}
 
@@ -3368,10 +3400,40 @@ input, select, textarea {
 				padding: 0 0.5em 0 0;
 			}
 
+		@media screen and (max-width: 1280px) {
+			#header h1 {
+				padding: 0 0 0 1.2em;
+			}
+
+			#header h1 a {
+				font-size: 0.75em;
+			}
+
+			#header .main ul li > a {
+				padding: 0 1.2em;
+				font-size: 0.68em;
+				color: #ffffff !important;
+			}
+		}
+
 		@media screen and (max-width: 980px) {
 
 			#header .links {
 				display: none;
+			}
+
+			#header h1 {
+				padding: 0 0 0 1em;
+			}
+
+			#header h1 a {
+				font-size: 0.72em;
+			}
+
+			#header .main ul li > a {
+				padding: 0 1em;
+				font-size: 0.66em;
+				color: #ffffff !important;
 			}
 
 		}
@@ -3384,7 +3446,11 @@ input, select, textarea {
 			}
 
 				#header h1 {
-					padding: 0 0 0 1em;
+					padding: 0 0 0 0.8em;
+				}
+
+				#header h1 a {
+					font-size: 0.65em;
 				}
 
 				#header .main .search {
@@ -3893,4 +3959,245 @@ input, select, textarea {
 	#main article.post p a[href*="google"]:hover::before,
 	#main article.post p a[href*="lookerstudio"]:hover::before {
 		width: 100%;
+	}
+
+/* Responsive Mobile - Améliorations pour téléphone */
+
+	/* Grille interactive - Réduire la taille sur mobile */
+	@media screen and (max-width: 736px) {
+		body::before {
+			background-size: 40px 27px;
+		}
+
+		.grid-cell {
+			width: 40px;
+			height: 27px;
+		}
+	}
+
+	/* Layout des projets */
+	.project-layout {
+		display: flex;
+		gap: 2em;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		align-items: flex-start;
+	}
+
+	.project-layout > a {
+		flex: 0 0 50%;
+		cursor: pointer;
+	}
+
+	.project-layout > a img {
+		width: 100%;
+		border-radius: 8px;
+		box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+	}
+
+	.project-layout > p {
+		flex: 1;
+		margin: 0;
+	}
+
+	/* Projets - Layout en colonne sur mobile */
+	@media screen and (max-width: 736px) {
+		.project-layout {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 1em;
+			margin-top: 1em;
+			margin-bottom: 1.5em;
+		}
+
+		.project-layout > a {
+			flex: 0 0 100%;
+			width: 100%;
+			margin-bottom: 0.5em;
+		}
+
+		.project-layout > p {
+			flex: 1;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+		.post h2 {
+			margin: 1.5em 0 0.5em 0;
+			font-size: 1.2em;
+		}
+	}
+
+	/* Header - Améliorations mobile supplémentaires */
+	@media screen and (max-width: 736px) {
+		#header .main ul li > a {
+			padding: 0 0.7em !important;
+			font-size: 0.62em !important;
+			color: #ffffff !important;
+		}
+	}
+
+	@media screen and (max-width: 600px) {
+		#header h1 {
+			padding: 0 0 0 0.6em !important;
+		}
+
+		#header h1 a {
+			font-size: 0.6em !important;
+		}
+
+		#header .main ul li > a {
+			padding: 0 0.6em !important;
+			font-size: 0.58em !important;
+			color: #ffffff !important;
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+		#header {
+			height: 2.5em;
+			line-height: 2.5em;
+		}
+
+		#header .main ul li > a {
+			padding: 0 0.5em !important;
+			font-size: 0.55em !important;
+			color: #ffffff !important;
+		}
+
+		#header h1 {
+			padding: 0 0 0 0.5em !important;
+		}
+
+		#header h1 a {
+			font-size: 0.55em !important;
+		}
+	}
+
+	@media screen and (max-width: 360px) {
+		#header h1 {
+			padding: 0 0 0 0.4em !important;
+		}
+
+		#header h1 a {
+			font-size: 0.5em !important;
+		}
+
+		#header .main ul li > a {
+			padding: 0 0.4em !important;
+			font-size: 0.5em !important;
+			color: #ffffff !important;
+		}
+	}
+
+	/* Icônes sociales - Ajustement mobile */
+	@media screen and (max-width: 736px) {
+		.icon.brands.fa-linkedin:before,
+		.icon.brands.fa-github:before {
+			font-size: 2em;
+		}
+
+		ul.icons li {
+			padding: 0 0.8em 0 0;
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+		.icon.brands.fa-linkedin:before,
+		.icon.brands.fa-github:before {
+			font-size: 1.73em;
+		}
+
+		ul.icons li {
+			padding: 0 0.6em 0 0;
+		}
+	}
+
+	/* Wrapper - Marges adaptées mobile */
+	@media screen and (max-width: 480px) {
+		#wrapper {
+			padding: 1em !important;
+		}
+
+		#main {
+			padding: 0;
+		}
+	}
+
+	/* Posts - Marges et espacement mobile */
+	@media screen and (max-width: 736px) {
+		.post p {
+			margin: 0 0 1em 0;
+			line-height: 1.6;
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+		.post {
+			margin: 0 0 1.5em 0;
+			padding: 1em;
+		}
+
+		.post > header .title h2 {
+			font-size: 1.1em;
+		}
+	}
+
+	/* Sidebar - Améliorations mobile */
+	@media screen and (max-width: 1280px) {
+		#sidebar {
+			margin-top: 2em;
+			padding-top: 2em;
+		}
+
+		#sidebar > * {
+			margin: 2em 0 0 0;
+			padding: 2em 0 0 0;
+		}
+	}
+
+	@media screen and (max-width: 736px) {
+		#sidebar {
+			margin-top: 1.5em;
+			padding-top: 1.5em;
+		}
+
+		#sidebar > * {
+			margin: 1.5em 0 0 0;
+			padding: 1.5em 0 0 0;
+		}
+	}
+
+	/* Footer - Centrage et espacement mobile */
+	@media screen and (max-width: 736px) {
+		#footer {
+			padding: 2em 0;
+			text-align: center;
+		}
+
+		#footer .icons {
+			justify-content: center;
+		}
+	}
+
+	/* Images - Responsive */
+	@media screen and (max-width: 736px) {
+		.post > span.image.featured,
+		.post > a.image.featured {
+			margin: 0 -1.5em 1.5em -1.5em;
+		}
+
+		.post > span.image.featured img,
+		.post > a.image.featured img {
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+		.post > span.image.featured,
+		.post > a.image.featured {
+			margin: 0 -1em 1em -1em;
+		}
 	}

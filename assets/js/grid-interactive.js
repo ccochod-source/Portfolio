@@ -7,12 +7,20 @@
 	'use strict';
 
 	// Configuration
-	const GRID_WIDTH = 80; // Largeur des cases en pixels
-	const GRID_HEIGHT = 53; // Hauteur des cases en pixels
+	let GRID_WIDTH = 80; // Largeur des cases en pixels
+	let GRID_HEIGHT = 53; // Hauteur des cases en pixels
 	let gridContainer = null;
 	let cells = [];
 	let activeCells = new Set();
 	let animationFrame = null;
+
+	// Fonction pour obtenir la taille de grille adaptée à l'écran
+	function getGridSize() {
+		if (window.innerWidth <= 736) {
+			return { width: 40, height: 27 };
+		}
+		return { width: 80, height: 53 };
+	}
 
 	// Wait for DOM to be ready
 	if (document.readyState === 'loading') {
@@ -27,6 +35,11 @@
 	}
 
 	function createGrid() {
+		// Mettre à jour la taille de la grille selon l'écran
+		const gridSize = getGridSize();
+		GRID_WIDTH = gridSize.width;
+		GRID_HEIGHT = gridSize.height;
+
 		// Créer le container pour les cases
 		gridContainer = document.createElement('div');
 		gridContainer.id = 'grid-interactive';
